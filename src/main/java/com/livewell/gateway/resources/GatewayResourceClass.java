@@ -4,13 +4,13 @@ import com.livewell.gateway.client.Client;
 import com.livewell.gateway.model.Encounter;
 import org.json.JSONException;
 import org.springframework.web.bind.annotation.*;
-;
+;import java.net.UnknownHostException;
 
 @RestController
 @RequestMapping("/gateway")
 public class GatewayResourceClass {
     @PostMapping("/createEncounter")
-    public int createEncounter(@RequestBody Encounter newEncounter) throws JSONException {
+    public int createEncounter(@RequestBody Encounter newEncounter) throws JSONException, UnknownHostException {
         Client client = new Client();
         int patientId = client.getPatientIdByName(newEncounter.getPatientName());
         int practitionerId = client.getPractitionerIdByName(newEncounter.getPractitionerName());

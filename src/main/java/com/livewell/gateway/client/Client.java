@@ -8,16 +8,21 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
 import org.springframework.web.client.RestTemplate;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 public class Client {
 
     RestTemplate restTemplate = new RestTemplate();
-    String uri= "http://localhost:8080/";
     int result;
+
+    public Client() throws UnknownHostException {
+    }
 
     public int getPatientIdByName(String name) {
 
         result = restTemplate.getForObject(
-                uri + "patient/getPatientIdByName?name=" + name,
+                 "http://patient-service:8089/patient/getPatientIdByName?name=" + name,
                 Integer.class);
 
         return result;
@@ -26,7 +31,7 @@ public class Client {
     public int getPractitionerIdByName(String name) {
         RestTemplate restTemplate = new RestTemplate();
         result = restTemplate.getForObject(
-                uri + "practitioner/getPractitionerIdByName?name=" + name,
+                 "http://practitioner-service:8088/practitioner/getPractitionerIdByName?name=" + name,
                 Integer.class);
 
         return result;
@@ -42,7 +47,7 @@ public class Client {
         HttpEntity<String> request =
                 new HttpEntity<String>(encounterObject.toString(), headers);
 
-        int encounterId = restTemplate.postForObject(uri + "encounter/create", request, Integer.class);
+        int encounterId = restTemplate.postForObject( "http://encounter-service:8087/encounter/create", request, Integer.class);
         return encounterId;
     }
 }
