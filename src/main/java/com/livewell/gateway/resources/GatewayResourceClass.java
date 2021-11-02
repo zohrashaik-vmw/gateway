@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/gateway")
 public class GatewayResourceClass {
     @PostMapping("/createEncounter")
-    public int createEncounter(@RequestBody Encounter newEncounter) throws JSONException, UnknownHostException {
+    public Encounter createEncounter(@RequestBody Encounter newEncounter) throws JSONException, UnknownHostException {
         Client client = new Client();
         int patientId = client.getPatientIdByName(newEncounter.getPatientName());
         int practitionerId = client.getPractitionerIdByName(newEncounter.getPractitionerName());
@@ -18,6 +18,9 @@ public class GatewayResourceClass {
         if (patientId > 0 && practitionerId > 0) {
             encounterId = client.createEncounter(patientId, practitionerId);
         }
-        return encounterId;
+        newEncounter.setPatientId(patientId);
+        newEncounter.setPractitionerId(practitionerId);
+        newEncounter.setId(encounterId);
+        return newEncounter;
     }
 }
