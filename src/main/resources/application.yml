@@ -8,19 +8,19 @@ spring:
           enabled: true
       routes:
         - id: patient-service
-          uri: http://livewell-gateway-service:8080
+          uri: http://patient-service:8089
           predicates:
             - Path=/patient/**
           filters:
             - RewritePath=/path/(?<path>.*), /$\{path}
         - id: practitioner-service
-          uri: http://livewell-gateway-service:8080
+          uri: http://practitioner-service:8088
           predicates:
             - Path=/practitioner/**
           filters:
             - RewritePath=/path/(?<path>.*), /$\{path}
         - id: encounter-service
-          uri: http://livewell-gateway-service:8080
+          uri: http://encounter-service:8087
           predicates:
             - Path=/encounter/**
           filters:
