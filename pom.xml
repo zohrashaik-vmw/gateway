@@ -16,6 +16,7 @@
 	<properties>
 		<java.version>11</java.version>
 		<spring-cloud.version>2020.0.4</spring-cloud.version>
+		<wavefront.version>2.2.2</wavefront.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -48,6 +49,14 @@
 			<version>0.0.20131108.vaadin1</version>
 			<scope>compile</scope>
 		</dependency>
+		<dependency>
+			<groupId>com.wavefront</groupId>
+			<artifactId>wavefront-spring-boot-starter</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-sleuth</artifactId>
+		</dependency>
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
@@ -58,6 +67,13 @@
 				<type>pom</type>
 				<scope>import</scope>
 			</dependency>
+			<dependency>
+			<groupId>com.wavefront</groupId>
+			<artifactId>wavefront-spring-boot-bom</artifactId>
+			<version>${wavefront.version}</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
 		</dependencies>
 	</dependencyManagement>
 
