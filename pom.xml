@@ -57,6 +57,17 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-sleuth</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>LATEST</version>
+		</dependency>
+		<dependency>
+			<groupId>io.micrometer</groupId>
+			<artifactId>micrometer-registry-wavefront</artifactId>
+			<version>LATEST</version>
+		</dependency>
+
 	</dependencies>
 	<dependencyManagement>
 		<dependencies>
