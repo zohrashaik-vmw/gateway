@@ -16,6 +16,9 @@ public class Encounter {
         this.patientId = patientId;
         this.practitionerId = practitionerId;
     }
+    public Encounter(){
+
+    }
 
     public String getEncounterId() {
         return encounterId;
