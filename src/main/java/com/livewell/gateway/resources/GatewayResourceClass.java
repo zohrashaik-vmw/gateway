@@ -18,9 +18,11 @@ public class GatewayResourceClass {
         if (patientId > 0 && practitionerId > 0) {
             encounterId = client.createEncounter(patientId, practitionerId);
         }
-        newEncounter.setPatientId(patientId);
-        newEncounter.setPractitionerId(practitionerId);
-        newEncounter.setId(encounterId);
-        return newEncounter;
+        System.out.println("Patient id=" + patientId + " practitionerid =" + practitionerId);
+        Encounter encounter = new Encounter();
+        encounter.setId(encounterId);
+        encounter.setPractitionerId(practitionerId);
+        encounter.setPatientId(patientId);
+        return encounter;
     }
 }
