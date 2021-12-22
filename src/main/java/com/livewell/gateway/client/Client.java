@@ -20,19 +20,28 @@ public class Client {
     }
 
     public int getPatientIdByName(String name) {
-
-        result = restTemplate.getForObject(
-                 "http://patient-service:8089/patient/getPatientIdByName?name=" + name,
-                Integer.class);
+        try {
+            result = restTemplate.getForObject(
+                    "http://patient-service:8089/patient/getPatientIdByName?name=" + name,
+                    Integer.class);
+        }
+        catch(Exception e){
+            result = 0;
+        }
 
         return result;
     }
 
     public int getPractitionerIdByName(String name) {
         RestTemplate restTemplate = new RestTemplate();
-        result = restTemplate.getForObject(
-                 "http://practitioner-service:8088/practitioner/getPractitionerIdByName?name=" + name,
-                Integer.class);
+       try {
+           result = restTemplate.getForObject(
+                   "http://practitioner-service:8088/practitioner/getPractitionerIdByName?name=" + name,
+                   Integer.class);
+       }
+       catch(Exception e){
+           result = 0;
+       }
 
         return result;
     }
