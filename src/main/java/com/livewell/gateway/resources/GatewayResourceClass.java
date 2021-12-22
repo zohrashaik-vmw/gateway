@@ -15,14 +15,21 @@ public class GatewayResourceClass {
         int patientId = client.getPatientIdByName(newEncounter.getPatientName());
         int practitionerId = client.getPractitionerIdByName(newEncounter.getPractitionerName());
         int encounterId = 0;
+        Encounter encounter = new Encounter();
+
         if (patientId > 0 && practitionerId > 0) {
             encounterId = client.createEncounter(patientId, practitionerId);
+            encounter.setEncounterId(encounterId);
+            encounter.setPractitionerId(practitionerId);
+            encounter.setPatientId(patientId);
+            encounter.setPatientName(newEncounter.getPatientName());
+            encounter.setPractitionerName(newEncounter.getPractitionerName());
+        } else if (patientId <=0 ){
+            encounter.setPatientName("Patient: " + newEncounter.getPatientName() + " not found");
+        } else {
+            encounter.setPractitionerName("Practitioner: " + newEncounter.getPractitionerName() + " not found");
+
         }
-        System.out.println("Patient id=" + patientId + " practitionerid =" + practitionerId);
-        Encounter encounter = new Encounter();
-        encounter.setId(encounterId);
-        encounter.setPractitionerId(practitionerId);
-        encounter.setPatientId(patientId);
         return encounter;
     }
 }
